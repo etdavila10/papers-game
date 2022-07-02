@@ -1,18 +1,21 @@
 import React from 'react';
 import Article from './Article';
 
-// api I will be testing https://www.boredapi.com/api/activity?type=recreational
-class Call extends React.Component {
+// is it possible to pass this state up to App.js?
+class CallArXiv extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "http://export.arxiv.org/api/query?search_query=au:\"Eduardo Torres Davila\"",
+      url: "http://export.arxiv.org/api/query?search_query=au:\"Richard Stanley\"",
       error: null,
       isLoaded: false,
       items: {},
     };
   }
 
+  // maybe to pass state up, we can call this and then simply pass data up instead of
+  // handling it in render below. That way Article can be called straight from App.
+  // Does it make more sense for Article to be a child of CallArXiv or a child of App?
   componentDidMount() {
     fetch(this.state.url)
       .then(res => res.text())
@@ -54,4 +57,4 @@ class Call extends React.Component {
   }
 }
 
-export default Call;
+export default CallArXiv;
