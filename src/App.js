@@ -3,16 +3,14 @@ import Call from './Call';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to arXiv Playground</h1>
-        <div>
-          What type of activity would you like to do?:
-          <br></br>
-          <input></input>
-        </div>
-        <Call />
-      </header>
+    <div className="App App-header">
+      <h1>Welcome to arXiv Playground</h1>
+      <div className="search-bar">
+        <h2>Search for some ArXiv Articles:</h2>
+        <p>Change url in 'Call.js' to change query for time being</p>
+        {/* <input type="text"></input> */}
+      </div>
+      <Call />
     </div>
   );
 }
