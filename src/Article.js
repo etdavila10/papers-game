@@ -1,14 +1,17 @@
 import './Article.css';
 
-function Article(props) {
-  let entry = props.value;
-  let title = entry.title["_text"];
+const Article = (props) => {
+  const entry = props.value;
+  const title = entry.title["_text"];
   // let cat = entry.category["_attributes"].term; // Will get this working later
-  let abstract = entry.summary["_text"];
+  const abstract = entry.summary["_text"];
   let authors = [];
 
   for (let i = 0; i < entry.author.length; i++) {
     authors.push(entry.author[i].name["_text"]);
+  }
+  if (authors.length === 0) {
+    authors = [entry.author.name["_text"]];
   }
 
   return (
@@ -26,6 +29,6 @@ function Article(props) {
       <p className={"abstract"}>{ abstract }</p>
     </div>
   );
-}
+};
 
 export default Article;
