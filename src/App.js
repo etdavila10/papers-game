@@ -22,7 +22,7 @@ const CallArxivAPI = (props) => {
   const setIsLoading = props.setIsLoading;
 
   useEffect(() => {
-    const arxiv_api_url = `http://export.arxiv.org/api/query?search_query=au:"${props.author}"`;
+    const arxiv_api_url = `//export.arxiv.org/api/query?search_query=au:"${props.author}"`;
     fetch(arxiv_api_url)
       .then(res => res.text())
       .then(
