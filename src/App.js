@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import './App.css';
 import Article from "./Article"; // React Component for displaying an article
+import getArticle from './services/arxiv';
 
 const Display = (props) => {
   if (props.isLoading) {
@@ -17,58 +18,55 @@ const Display = (props) => {
   }
 };
 
-const CallArxivAPI = (props) => {
-  const setArticles = props.setArticles;
-  const setIsLoading = props.setIsLoading;
-
-  useEffect(() => {
-    const arxiv_api_url = `//export.arxiv.org/api/query?search_query=au:"${props.author}"`;
-    fetch(arxiv_api_url)
-      .then(res => res.text())
-      .then(
-        (result) => {
-          let convert = require('xml-js');
-          let resultJson = convert.xml2js(result, {compact: true, spaces: 4}).feed.entry;
-          console.log(resultJson);
-          setArticles(resultJson);
-          setIsLoading(false);
-      }
-    ).catch(error => console.log(error))
-  }, [props.author, setArticles, setIsLoading]);
-  // second argument tells UseEffect if page changes then update the effect
-
-  return null;
-};
 
 const App = () => {
-  // set initial arxiv call with Richard Stanley as author
-  const [author, setAuthor] = useState('Richard Stanley');
-  // where the articles will be stored
-  const [articles, setArticles] = useState([]);
-  // check whether we are loading an api call
-  const [isLoading, setIsLoading] = useState(true);
+  const generateRandomArxivId = () => {
+    const today = new Date();
+    const year = (today.getFullYear() % 2000);
+    const randomMonth = Math.floor(Math.random() * (12 + 1 - 1) + 1)
+      .toString()
+      .padStart(2, '0');
+    const randomYear = Math.floor(Math.random() * (year - 8) + 8)
+      .toString()
+      .padStart(2, '0');
 
-  const [inputVal, setInputVal] = useState('');
+    const randomID = Math.floor(Math.random() * (2000 - 1) + 1)
+      .toString()
+      .padStart(5, '0');
 
-  // When button is pressed: update the author.
-  // Since useEffect() depends on our author
-  // this should retrigger the api call.
-  const updateAuthor = () => {
-    setAuthor(inputVal);
-    setIsLoading(true);
+    return `${randomYear}${randomMonth}.${randomID}`;
   };
+
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [arxivId, setArxivId] = useState(generateRandomArxivId());
+
+
+  const generateNewArticle = () => {
+    setIsLoading(true);
+    setArxivId(generateRandomArxivId());
+  }
+
+  useEffect(() => {
+    getArticle(arxivId)
+      .then(result => {
+          let convert = require('xml-js');
+          let resultJson = convert.xml2js(result, {compact: true, spaces: 4}).feed.entry;
+          console.log('ID that gave article below: ', arxivId);
+          console.log(resultJson);
+          setArticles([resultJson]);
+          setIsLoading(false);
+      })
+      .catch(error => console.log(error))
+  }, [arxivId]);
 
   // Main App
   return (
     <div className="App App-header">
       <h1>Welcome to arXiv Playground</h1>
       <div className="search-bar">
-        <h2>Search for some ArXiv Articles:</h2>
-        <p>Type author name:</p>
-        <input type="text" value={inputVal} onChange={(e) => setInputVal(e.target.value)}></input>
-        <button style={{marginLeft: '10px', padding: '10px' }} onClick={updateAuthor}>UPDATE</button>
+        <button onClick={generateNewArticle}>Generate new article</button>
       </div>
-      <CallArxivAPI author={author} setArticles={setArticles} setIsLoading={setIsLoading} />
       <Display isLoading={isLoading} articles={articles} />
     </div>
   );
