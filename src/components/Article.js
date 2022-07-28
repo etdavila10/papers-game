@@ -1,9 +1,6 @@
-import './Article.css';
-
 const Article = (props) => {
   const entry = props.value;
   const title = entry.title["_text"];
-  // let cat = entry.category["_attributes"].term; // Will get this working later
   const abstract = entry.summary["_text"];
   let authors = [];
 
