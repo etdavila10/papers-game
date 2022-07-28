@@ -73,10 +73,6 @@ const App = () => {
   // Main App
   return (
     <div className="App">
-      {/* <h1 className="App-header">Welcome to arXiv Playground</h1> */}
-      {/* <div>
-        <button onClick={generateNewArticle}>Generate new article</button>
-      </div> */}
       <Display beginGame={beginGame} gameInProgress={gameInProgress} isLoading={oneIsLoading || twoIsLoading} article1={article1} article2={article2} />
     </div>
   );
