@@ -19,8 +19,8 @@ const Display = (props) => {
   if (props.isLoading) {
     return <div className="loading">Loading...</div>
   } else {
-    const article1Pages = 0;
-    const article2Pages = 0;
+    // const article1Pages = 0;
+    // const article2Pages = 0;
     return (
       <>
         <h1>Which one has more pages?</h1>

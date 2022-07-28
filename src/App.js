@@ -29,7 +29,7 @@ const App = () => {
   const [oneIsLoading, setOneIsLoading] = useState(false);
   const [twoIsLoading, setTwoIsLoading] = useState(false);
   const [gameInProgress, setGameInProgress] = useState(false);
-  const [numCorrect, setNumCorrect] = useState(0);
+  // const [numCorrect, setNumCorrect] = useState(0);
 
   // player has pressed the beginGame button
   const beginGame = () => {
