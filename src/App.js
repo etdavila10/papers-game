@@ -40,6 +40,14 @@ const App = () => {
     generateArticle2();
   }
 
+  const article1Click = () => {
+    console.log('article 1 clicked');
+  }
+
+  const article2Click = () => {
+    console.log('article 2 clicked');
+  }
+
   // generate first article
   const generateArticle1 = () => {
     const articleId = generateRandomArxivId();
@@ -73,7 +81,15 @@ const App = () => {
   // Main App
   return (
     <div className="App">
-      <Display beginGame={beginGame} gameInProgress={gameInProgress} isLoading={oneIsLoading || twoIsLoading} article1={article1} article2={article2} />
+      <Display 
+        beginGame={beginGame} 
+        gameInProgress={gameInProgress} 
+        isLoading={oneIsLoading || twoIsLoading} 
+        article1={article1} 
+        article2={article2} 
+        article1Click={article1Click}
+        article2Click={article2Click}
+      />
     </div>
   );
 };

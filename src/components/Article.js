@@ -12,7 +12,7 @@ const Article = (props) => {
   }
 
   return (
-    <div className={"article-entry"}>
+    <div onClick={props.onClick} className={"article-entry"}>
       <h1 className={"article-title"}>{ title }</h1>
       <ul className={"authors"}>
         {authors.map((name, index) => {

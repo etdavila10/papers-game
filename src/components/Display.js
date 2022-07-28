@@ -19,14 +19,12 @@ const Display = (props) => {
   if (props.isLoading) {
     return <div className="loading">Loading...</div>
   } else {
-    // const article1Pages = 0;
-    // const article2Pages = 0;
     return (
       <>
         <h1>Which one has more pages?</h1>
         <div className="article-containers">
-          <Article value={props.article1} />
-          <Article value={props.article2} />
+          <Article onClick={props.article1Click} value={props.article1} />
+          <Article onClick={props.article2Click} value={props.article2} />
         </div>
       </>
     );
