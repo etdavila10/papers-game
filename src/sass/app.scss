@@ -40,6 +40,14 @@ code {
   font-size: $h2-font-size;
 }
 
+button {
+  font-size: $h1-font-size;
+}
+
+button:hover {
+  background-color: $accent-color;
+}
+
 .article-containers {
   display: flex;
   justify-content: center;
