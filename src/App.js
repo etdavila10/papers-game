@@ -6,7 +6,6 @@ import getArticle from './services/arxiv';
 let newerArticle = 0
 let article1Date = 0
 let article2Date = 0
-// let currScore = 0
 
 const App = () => {
   // helper function to generate a random ID
@@ -35,6 +34,7 @@ const App = () => {
   const [twoIsLoading, setTwoIsLoading] = useState(false);
   const [gameInProgress, setGameInProgress] = useState(false);
   const [currScore, setCurrScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
   // const [numCorrect, setNumCorrect] = useState(0);
 
   // player has pressed the beginGame button
@@ -57,15 +57,16 @@ const App = () => {
     console.log(article1Date)
     if (newerArticle === 1){
       setCurrScore(currScore + 1)
-      // currScore++
-      console.log('You won! score: ', currScore)
-
+      console.log('You won! score: ', currScore + 1)
     }
     else {
+      if (currScore > bestScore) {
+        setBestScore(currScore)
+      }
       setCurrScore(0)
-      // currScore = 0
       console.log('You lost')
     }
+    // Splash Page
     beginGame()
   }
 
@@ -74,9 +75,12 @@ const App = () => {
     console.log(article2Date)
     if (newerArticle === 2){
       setCurrScore(currScore + 1)
-      console.log('You won! score: ', currScore)
+      console.log('You won! score: ', currScore + 1)
     }
     else {
+      if (currScore > bestScore) {
+        setBestScore(currScore)
+      }
       setCurrScore(0)
       console.log('You lost')
     }
@@ -91,7 +95,7 @@ const App = () => {
           let convert = require('xml-js');
           let resultJson = convert.xml2js(result, {compact: true, spaces: 4}).feed.entry;
           console.log('ID that gave article below: ', articleId);
-          console.log(resultJson);
+          // console.log(resultJson);
           setArticle1(resultJson);
           setOneIsLoading(false);
       })
@@ -107,7 +111,7 @@ const App = () => {
           let convert = require('xml-js');
           let resultJson = convert.xml2js(result, {compact: true, spaces: 4}).feed.entry;
           console.log('ID that gave article below: ', articleId);
-          console.log(resultJson);
+          // console.log(resultJson);
           setArticle2(resultJson);
           setTwoIsLoading(false);
       })
@@ -127,6 +131,7 @@ const App = () => {
         article1Click={article1Click}
         article2Click={article2Click}
         currScore={currScore}
+        bestScore={bestScore}
       />
     </div>
   );

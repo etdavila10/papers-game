@@ -22,7 +22,10 @@ const Display = (props) => {
     return (
       <>
         <h1>Which paper was submitted to the ArXiv more recently?</h1>
-        <div id="curr-score">Current Score = {props.currScore}</div>
+        <div id="scores">
+          <div id="curr-score">Current Score = {props.currScore}</div>
+          <div id="best-score">Best Score = {props.bestScore}</div>
+        </div>
         <div className="article-containers">
           <Article onClick={props.article1Click} value={props.article1} />
           <Article onClick={props.article2Click} value={props.article2} />
