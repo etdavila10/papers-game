@@ -3,6 +3,11 @@ import { useState } from 'react';
 import Display from "./components/Display";
 import getArticle from './services/arxiv';
 
+let newerArticle = 0
+let article1Date = 0
+let article2Date = 0
+let currScore = 0
+
 const App = () => {
   // helper function to generate a random ID
   // based on arXiv ID format
@@ -36,16 +41,43 @@ const App = () => {
     setOneIsLoading(true);
     setTwoIsLoading(true);
     setGameInProgress(true);
-    generateArticle1();
-    generateArticle2();
+    article1Date = generateArticle1();
+    article2Date = generateArticle2();
+    if (article1Date < article2Date){
+        newerArticle = 2
+    }
+    else {
+        newerArticle = 1
+    }
   }
 
   const article1Click = () => {
     console.log('article 1 clicked');
+    console.log(article1Date)
+    if (newerArticle === 1){
+      currScore++
+      console.log('You won! score: ', currScore)
+
+    }
+    else {
+      currScore = 0
+      console.log('You lost')
+    }
+    beginGame()
   }
 
   const article2Click = () => {
     console.log('article 2 clicked');
+    console.log(article2Date)
+    if (newerArticle === 2){
+      currScore++
+      console.log('You won! score: ', currScore)
+    }
+    else {
+      currScore = 0
+      console.log('You lost')
+    }
+    beginGame()
   }
 
   // generate first article
@@ -61,6 +93,7 @@ const App = () => {
           setOneIsLoading(false);
       })
       .catch(error => console.log(error))
+    return articleId
   }
 
   // generate second article
@@ -76,6 +109,7 @@ const App = () => {
           setTwoIsLoading(false);
       })
       .catch(error => console.log(error))
+    return articleId
   }
 
   // Main App
