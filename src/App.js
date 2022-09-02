@@ -6,7 +6,7 @@ import getArticle from './services/arxiv';
 let newerArticle = 0
 let article1Date = 0
 let article2Date = 0
-let currScore = 0
+// let currScore = 0
 
 const App = () => {
   // helper function to generate a random ID
@@ -34,6 +34,7 @@ const App = () => {
   const [oneIsLoading, setOneIsLoading] = useState(false);
   const [twoIsLoading, setTwoIsLoading] = useState(false);
   const [gameInProgress, setGameInProgress] = useState(false);
+  const [currScore, setCurrScore] = useState(0);
   // const [numCorrect, setNumCorrect] = useState(0);
 
   // player has pressed the beginGame button
@@ -55,12 +56,14 @@ const App = () => {
     console.log('article 1 clicked');
     console.log(article1Date)
     if (newerArticle === 1){
-      currScore++
+      setCurrScore(currScore + 1)
+      // currScore++
       console.log('You won! score: ', currScore)
 
     }
     else {
-      currScore = 0
+      setCurrScore(0)
+      // currScore = 0
       console.log('You lost')
     }
     beginGame()
@@ -70,11 +73,11 @@ const App = () => {
     console.log('article 2 clicked');
     console.log(article2Date)
     if (newerArticle === 2){
-      currScore++
+      setCurrScore(currScore + 1)
       console.log('You won! score: ', currScore)
     }
     else {
-      currScore = 0
+      setCurrScore(0)
       console.log('You lost')
     }
     beginGame()
@@ -123,6 +126,7 @@ const App = () => {
         article2={article2} 
         article1Click={article1Click}
         article2Click={article2Click}
+        currScore={currScore}
       />
     </div>
   );

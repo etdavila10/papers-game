@@ -1,6 +1,7 @@
 // Defined variables
 $base-font-size: 18px;
 $h1-font-size: 2rem;
+$h2-font-size: 1.5rem;
 $bg-color: #282c34;
 $fg-color: #EEEEEE;
 $accent-color: #FFC8C8;
@@ -33,6 +34,10 @@ code {
 .loading {
   margin-top: 3rem;
   font-size: $h1-font-size;
+}
+
+#curr-score {
+  font-size: $h2-font-size;
 }
 
 .article-containers {
