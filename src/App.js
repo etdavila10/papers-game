@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import Display from "./components/Display";
+import GameOver from "./components/GameOver";
 import getArticle from './services/arxiv';
 
 let newerArticle = 0
@@ -35,10 +36,14 @@ const App = () => {
   const [gameInProgress, setGameInProgress] = useState(false);
   const [currScore, setCurrScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  // const [numCorrect, setNumCorrect] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   // player has pressed the beginGame button
   const beginGame = () => {
+    if (gameOver) {
+      setCurrScore(0)
+    }
+    setGameOver(false)
     setOneIsLoading(true);
     setTwoIsLoading(true);
     setGameInProgress(true);
@@ -58,16 +63,16 @@ const App = () => {
     if (newerArticle === 1){
       setCurrScore(currScore + 1)
       console.log('You won! score: ', currScore + 1)
+      beginGame()
     }
     else {
       if (currScore > bestScore) {
         setBestScore(currScore)
       }
-      setCurrScore(0)
+      // setCurrScore(0)
       console.log('You lost')
+      setGameOver(true)
     }
-    // Splash Page
-    beginGame()
   }
 
   const article2Click = () => {
@@ -76,15 +81,16 @@ const App = () => {
     if (newerArticle === 2){
       setCurrScore(currScore + 1)
       console.log('You won! score: ', currScore + 1)
+      beginGame()
     }
     else {
       if (currScore > bestScore) {
         setBestScore(currScore)
       }
-      setCurrScore(0)
+      // setCurrScore(0)
       console.log('You lost')
+      setGameOver(true)
     }
-    beginGame()
   }
 
   // generate first article
@@ -120,21 +126,32 @@ const App = () => {
   }
 
   // Main App
-  return (
-    <div className="App">
-      <Display 
-        beginGame={beginGame} 
-        gameInProgress={gameInProgress} 
-        isLoading={oneIsLoading || twoIsLoading} 
-        article1={article1} 
-        article2={article2} 
-        article1Click={article1Click}
-        article2Click={article2Click}
-        currScore={currScore}
-        bestScore={bestScore}
-      />
-    </div>
-  );
+  if (gameOver) {
+    return (
+      <div className="App">
+        <GameOver
+          currScore={currScore}
+          beginGame={beginGame} 
+        />
+      </div>
+    )
+  } else {
+    return (
+      <div className="App">
+        <Display 
+          beginGame={beginGame} 
+          gameInProgress={gameInProgress} 
+          isLoading={oneIsLoading || twoIsLoading} 
+          article1={article1} 
+          article2={article2} 
+          article1Click={article1Click}
+          article2Click={article2Click}
+          currScore={currScore}
+          bestScore={bestScore}
+        />
+      </div>
+    )
+  }
 };
 
 export default App;
