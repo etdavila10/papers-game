@@ -38,9 +38,13 @@ const App = () => {
   const [bestScore, setBestScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
 
+
   // player has pressed the beginGame button
   const beginGame = () => {
     if (gameOver) {
+      if (currScore > bestScore) {
+        setBestScore(currScore)
+      }
       setCurrScore(0)
     }
     setGameOver(false)
@@ -66,11 +70,7 @@ const App = () => {
       beginGame()
     }
     else {
-      if (currScore > bestScore) {
-        setBestScore(currScore)
-      }
-      // setCurrScore(0)
-      console.log('You lost')
+      // console.log('You lost')
       setGameOver(true)
     }
   }
@@ -84,11 +84,7 @@ const App = () => {
       beginGame()
     }
     else {
-      if (currScore > bestScore) {
-        setBestScore(currScore)
-      }
-      // setCurrScore(0)
-      console.log('You lost')
+      // console.log('You lost')
       setGameOver(true)
     }
   }
@@ -132,6 +128,7 @@ const App = () => {
         <GameOver
           currScore={currScore}
           beginGame={beginGame} 
+          bestScore={bestScore}
         />
       </div>
     )
