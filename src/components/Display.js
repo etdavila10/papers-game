@@ -11,7 +11,7 @@ const Display = (props) => {
   if (!props.gameInProgress) {
     return (
       <div>
-        <h1>Welcome to arXiv Page Counter</h1>
+        <h1>Welcome to the ArXiv Game!</h1>
         <button onClick={props.beginGame}>Start a new game?</button>
       </div>
     )
@@ -21,7 +21,7 @@ const Display = (props) => {
   } else {
     return (
       <>
-        <h1>Which one has more pages?</h1>
+        <h1>Which paper was submitted to the ArXiv more recently?</h1>
         <div className="article-containers">
           <Article onClick={props.article1Click} value={props.article1} />
           <Article onClick={props.article2Click} value={props.article2} />
