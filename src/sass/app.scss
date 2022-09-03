@@ -42,6 +42,10 @@ code {
 
 button {
   font-size: $h1-font-size;
+  border: none;
+  border-radius: 2rem;
+  margin: 2rem;
+  padding: 1rem;
 }
 
 button:hover {
