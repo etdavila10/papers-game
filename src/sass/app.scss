@@ -5,6 +5,7 @@ $h2-font-size: 1.5rem;
 $bg-color: #282c34;
 $fg-color: #EEEEEE;
 $accent-color: #FFC8C8;
+$accent-color2: #A8EEA8;
 
 // Debugging purposes
 * {
@@ -38,6 +39,10 @@ code {
 
 #scores {
   font-size: $h2-font-size;
+}
+
+#emphasis {
+  color: $accent-color2;
 }
 
 button {
