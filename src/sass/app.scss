@@ -5,6 +5,7 @@ $h2-font-size: 1.5rem;
 $bg-color: #282c34;
 $fg-color: #EEEEEE;
 $accent-color: #FFC8C8;
+$accent-color2: #A8EEA8;
 
 // Debugging purposes
 * {
@@ -40,8 +41,17 @@ code {
   font-size: $h2-font-size;
 }
 
+#emphasis {
+  font-size: $h2-font-size;
+  color: $accent-color2;
+}
+
 button {
   font-size: $h1-font-size;
+  border: none;
+  border-radius: 2rem;
+  margin: 2rem;
+  padding: 1rem;
 }
 
 button:hover {
