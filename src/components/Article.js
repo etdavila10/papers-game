@@ -1,3 +1,5 @@
+const Latex = require('react-latex')
+
 const Article = (props) => {
   const entry = props.value;
   const title = entry.title["_text"];
@@ -13,7 +15,7 @@ const Article = (props) => {
 
   return (
     <div onClick={props.onClick} className={"article-entry"}>
-      <h1 className={"article-title"}>{ title }</h1>
+      <h1 className={"article-title"}><Latex>{ title }</Latex></h1>
       <ul className={"authors"}>
         {authors.map((name, index) => {
           if (index === 0) {
@@ -23,7 +25,7 @@ const Article = (props) => {
           }
         })}
       </ul>
-      <p className={"abstract"}>{ abstract }</p>
+      <p className={"abstract"}><Latex>{ abstract }</Latex></p>
     </div>
   );
 };

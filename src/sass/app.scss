@@ -1,7 +1,7 @@
 // Defined variables
 $base-font-size: 18px;
-$h1-font-size: 2rem;
-$h2-font-size: 1.5rem;
+$h1-font-size: 3rem;
+$h2-font-size: 2rem;
 $bg-color: #282c34;
 $fg-color: #EEEEEE;
 $accent-color: #FFC8C8;
@@ -35,6 +35,10 @@ code {
     monospace;
 }
 
+h1 {
+  font-size: $h1-font-size;
+}
+
 .loading {
   margin-top: 3rem;
   font-size: $h1-font-size;
@@ -58,7 +62,7 @@ code {
 }
 
 button {
-  font-size: $h1-font-size;
+  font-size: $h2-font-size;
   border: none;
   border-radius: 2rem;
   margin: 2rem;
@@ -82,7 +86,7 @@ button:hover {
     color: $bg-color;
     border-radius: 2rem;
     .article-title {
-      font-size: $h1-font-size;
+      font-size: $h2-font-size;
     }
     .authors {
       font-size: 1rem; 
