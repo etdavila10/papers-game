@@ -10,7 +10,7 @@ import Article from "./Article";
 const Display = (props) => {
   if (!props.gameInProgress) {
     return (
-      <div>
+      <div className="content">
         <h1>Welcome to the ArXiv Game!</h1>
         <button onClick={props.beginGame}>Start a new game?</button>
       </div>

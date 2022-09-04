@@ -14,6 +14,7 @@ $accent-color2: #A8EEA8;
 
 html {
   font-size: $base-font-size;
+  height: 100%;
 }
 
 body {
@@ -25,6 +26,8 @@ body {
   background-color: $bg-color;
   color: $fg-color;
   text-align: center;
+  height: 100%;
+  margin: 0;
 }
 
 code {
@@ -35,6 +38,14 @@ code {
 .loading {
   margin-top: 3rem;
   font-size: $h1-font-size;
+}
+
+.content {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 #scores {

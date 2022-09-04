@@ -1,7 +1,7 @@
 
 const GameOver = (props) => {
   return (
-    <div>
+    <div className="content">
       <h1>You Lost. Game Over!</h1>
       { props.currScore > props.bestScore 
         ? <div><div id = "emphasis">New Best!</div> <div id = "scores">Your Score: {props.currScore}</div> </div>
