@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Display from "./components/Display";
 import GameOver from "./components/GameOver";
+import Transition from "./components/Transition";
 import getArticle from './services/arxiv';
 
 let newerArticle = 0
@@ -28,7 +29,7 @@ const App = () => {
     return `${randomYear}${randomMonth}.${randomID}`;
   };
 
-  // state of variables I need to keep track of
+  // state of variables we need to keep track of
   const [article1, setArticle1] = useState({});
   const [article2, setArticle2] = useState({});
   const [oneIsLoading, setOneIsLoading] = useState(false);
@@ -37,7 +38,7 @@ const App = () => {
   const [currScore, setCurrScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-
+  const [correctAnswer, setCorrectAnswer] = useState(false);
 
   // player has pressed the beginGame button
   const beginGame = () => {
@@ -47,6 +48,7 @@ const App = () => {
       }
       setCurrScore(0)
     }
+    setCorrectAnswer(false);
     setGameOver(false)
     setOneIsLoading(true);
     setTwoIsLoading(true);
@@ -62,12 +64,11 @@ const App = () => {
   }
 
   const article1Click = () => {
-    console.log('article 1 clicked');
-    console.log(article1Date)
     if (newerArticle === 1){
       setCurrScore(currScore + 1)
-      console.log('You won! score: ', currScore + 1)
-      beginGame()
+      setCorrectAnswer(true);
+      // console.log('You won! score: ', currScore + 1)
+      // beginGame()
     }
     else {
       // console.log('You lost')
@@ -76,12 +77,11 @@ const App = () => {
   }
 
   const article2Click = () => {
-    console.log('article 2 clicked');
-    console.log(article2Date)
     if (newerArticle === 2){
       setCurrScore(currScore + 1)
-      console.log('You won! score: ', currScore + 1)
-      beginGame()
+      setCorrectAnswer(true);
+      // console.log('You won! score: ', currScore + 1)
+      // beginGame()
     }
     else {
       // console.log('You lost')
@@ -97,7 +97,7 @@ const App = () => {
           let convert = require('xml-js');
           let resultJson = convert.xml2js(result, {compact: true, spaces: 4}).feed.entry;
           console.log('ID that gave article below: ', articleId);
-          // console.log(resultJson);
+          console.log(resultJson);
           setArticle1(resultJson);
           setOneIsLoading(false);
       })
@@ -113,7 +113,7 @@ const App = () => {
           let convert = require('xml-js');
           let resultJson = convert.xml2js(result, {compact: true, spaces: 4}).feed.entry;
           console.log('ID that gave article below: ', articleId);
-          // console.log(resultJson);
+          console.log(resultJson);
           setArticle2(resultJson);
           setTwoIsLoading(false);
       })
@@ -122,6 +122,17 @@ const App = () => {
   }
 
   // Main App
+  if (correctAnswer) {
+    return (
+      <div className="App">
+        <Transition 
+          beginGame={beginGame} 
+          article1={article1} 
+          article2={article2} 
+        />
+      </div>
+    )
+  }
   if (gameOver) {
     return (
       <div className="App">
@@ -129,6 +140,8 @@ const App = () => {
           currScore={currScore}
           beginGame={beginGame} 
           bestScore={bestScore}
+          newArticle={newerArticle === 1 ? article1 : article2}
+          oldArticle={newerArticle === 1 ? article2 : article1}
         />
       </div>
     )
@@ -145,6 +158,7 @@ const App = () => {
           article2Click={article2Click}
           currScore={currScore}
           bestScore={bestScore}
+          correctAnswer={correctAnswer}
         />
       </div>
     )

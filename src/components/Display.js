@@ -16,9 +16,7 @@ const Display = (props) => {
       </div>
     )
   }
-  if (props.isLoading) {
-    return <div className="loading">Loading...</div>
-  } else {
+  if (!props.isLoading) {
     return (
       <>
         <h1>Which paper was submitted to the ArXiv more recently?</h1>
