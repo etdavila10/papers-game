@@ -121,14 +121,21 @@ const App = () => {
     return articleId
   }
 
+  const openArticle = url => {
+    window.open(url)
+  }
+
   // Main App
   if (correctAnswer) {
     return (
       <div className="App">
         <Transition 
           beginGame={beginGame} 
+          openArticle={openArticle}
           article1={article1} 
           article2={article2} 
+          currScore={currScore}
+          bestScore={bestScore}
         />
       </div>
     )
