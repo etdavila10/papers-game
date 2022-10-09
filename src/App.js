@@ -147,6 +147,8 @@ const App = () => {
           currScore={currScore}
           beginGame={beginGame} 
           bestScore={bestScore}
+          article1={article1} 
+          article2={article2} 
           newArticle={newerArticle === 1 ? article1 : article2}
           oldArticle={newerArticle === 1 ? article2 : article1}
         />

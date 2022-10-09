@@ -4,7 +4,7 @@
 const Transition = (props) => {
   return (
     <div>
-      <h1>Correct!</h1>
+      <h1 id="correct">Correct!</h1>
       <div id="scores">
         <div id="curr-score">Current Score = {props.currScore}</div>
         <div id="best-score">Best Score = {props.bestScore}</div>
