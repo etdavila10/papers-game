@@ -146,6 +146,7 @@ const App = () => {
         <GameOver
           currScore={currScore}
           beginGame={beginGame} 
+          openArticle={openArticle}
           bestScore={bestScore}
           article1={article1} 
           article2={article2} 
