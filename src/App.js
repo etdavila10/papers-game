@@ -5,7 +5,6 @@ import GameOver from "./components/GameOver";
 import Transition from "./components/Transition";
 import getArticle from './services/arxiv';
 
-let newerArticle = 0
 let article1Date = 0
 let article2Date = 0
 
@@ -39,6 +38,7 @@ const App = () => {
   const [bestScore, setBestScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState(false);
+  const [newerArticle, setNewerArticle] = useState(0);
 
   // player has pressed the beginGame button
   const beginGame = () => {
@@ -56,10 +56,10 @@ const App = () => {
     article1Date = generateArticle1();
     article2Date = generateArticle2();
     if (article1Date < article2Date){
-        newerArticle = 2
+        setNewerArticle(2)
     }
     else {
-        newerArticle = 1
+        setNewerArticle(1)
     }
   }
 
@@ -136,6 +136,7 @@ const App = () => {
           article2={article2} 
           currScore={currScore}
           bestScore={bestScore}
+          newerArticle={newerArticle}
         />
       </div>
     )
@@ -150,8 +151,7 @@ const App = () => {
           bestScore={bestScore}
           article1={article1} 
           article2={article2} 
-          newArticle={newerArticle === 1 ? article1 : article2}
-          oldArticle={newerArticle === 1 ? article2 : article1}
+          newerArticle={newerArticle}
         />
       </div>
     )

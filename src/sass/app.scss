@@ -5,12 +5,15 @@ $h2-font-size: 2rem;
 $bg-color: #282c34;
 $fg-color: #EEEEEE;
 $accent-color: #FFC8C8;
+$accent-color-hover: #ffc8c8e3;
 $accent-color2: #A8EEA8;
+$accent-color2-hover: #a8eea8db;
+$light-grey: #eeeeeecf;
 
 // Debugging purposes
-* {
-  // background: rgba(0, 255, 0, 0.1);
-}
+// * {
+// background: rgba(0, 255, 0, 0.1);
+// }
 
 html {
   font-size: $base-font-size;
@@ -78,7 +81,7 @@ button {
 }
 
 button:hover {
-  background-color: $accent-color;
+  background-color: $light-grey;
 }
 
 .article-containers {
@@ -106,7 +109,19 @@ button:hover {
       }
     }
   }
+  .old {
+    background-color: $accent-color !important;
+  }
+  .old:hover {
+    background-color: $accent-color-hover !important;
+  }
+  .new {
+    background-color: $accent-color2 !important;
+  }
+  .new:hover {
+    background-color: $accent-color2-hover !important;
+  }
   .article-entry:hover {
-    background-color: $accent-color;
+    background-color: $light-grey;
   }
 }
