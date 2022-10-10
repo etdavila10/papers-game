@@ -1,5 +1,5 @@
 // Defined variables
-$base-font-size: 18px;
+$base-font-size: 16px;
 $h1-font-size: 3rem;
 $h2-font-size: 2rem;
 $bg-color: #282c34;
@@ -61,6 +61,14 @@ h1 {
   color: $accent-color2;
 }
 
+#correct {
+  color: $accent-color2;
+}
+
+#incorrect {
+  color: $accent-color;
+}
+
 button {
   font-size: $h2-font-size;
   border: none;
@@ -78,7 +86,8 @@ button:hover {
   justify-content: center;
   .article-entry {
     cursor: pointer;
-    max-width: 40rem;
+    max-width: 40%;
+    min-width: 40%;
     padding: 2rem;
     margin: 2rem;
     text-align: left;
