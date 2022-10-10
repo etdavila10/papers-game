@@ -1,4 +1,4 @@
-# ArXiv API Demo with ReactJS - The ArXiv Game
+tit# ArXiv API Demo with ReactJS - The ArXiv Game
 
 A hosted version of the site can be found [here](https://tranquil-starship-92a3ed.netlify.app/)
 

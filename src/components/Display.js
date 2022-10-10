@@ -13,6 +13,7 @@ const Display = (props) => {
       <div className="content">
         <h1>Welcome to the ArXiv Game!</h1>
         <button onClick={props.beginGame}>Start a new game?</button>
+        <h2>By Eduardo Torres Davila and Aaron Li</h2>
       </div>
     )
   }

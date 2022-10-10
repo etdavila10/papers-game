@@ -8,11 +8,11 @@ const GameOver = (props) => {
         : <div><div id = "scores" >Best Score: {props.bestScore}</div><div id = "scores">Your Score: {props.currScore}</div></div>}
       
       <div  className="article-containers">
-        <div  className={props.newerArticle === 1 ? "article-entry new" : "article-entry old"} onClick={() => {props.openArticle(props.article1.id["_text"])}} >
+        <div  className={props.newerArticle === 1 ? "article-entry" : "article-entry old"} onClick={() => {props.openArticle(props.article1.id["_text"])}} >
           <h2>Title: {props.article1.title["_text"]}</h2>
           <h2>Date: {props.article1.published["_text"].substring(0,10)}</h2>
         </div>
-        <div className={props.newerArticle === 1 ? "article-entry old" : "article-entry new"} onClick={() => {props.openArticle(props.article2.id["_text"])}}>
+        <div className={props.newerArticle === 1 ? "article-entry old" : "article-entry"} onClick={() => {props.openArticle(props.article2.id["_text"])}}>
           <h2>Title: {props.article2.title["_text"]}</h2>
           <h2>Date: {props.article2.published["_text"].substring(0,10)}</h2>
         </div>
