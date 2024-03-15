@@ -13,9 +13,18 @@ const Display = (props) => {
       <div className="content">
         <h1>Welcome to the ArXiv Game!</h1>
         <button onClick={props.beginGame}>Start a new game?</button>
-        <h2>By Eduardo Torres Davila and Aaron Li</h2>
+        <h2>
+          By{" "}
+          <a href="https://sites.google.com/umn.edu/aaronli" class="link">
+            Aaron Li
+          </a>{" "}
+          and{" "}
+          <a href="https://etdavila10.github.io/" class="link">
+            Eduardo Torres Dávila
+          </a>
+        </h2>
       </div>
-    )
+    );
   }
   if (!props.isLoading) {
     return (
