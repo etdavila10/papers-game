@@ -5,14 +5,12 @@ import GameOver from "./components/GameOver";
 import Transition from "./components/Transition";
 import getArticles from './services/arxiv';
 
-let article1Date = 0
-let article2Date = 0
-
 const App = () => {
 
   // state of variables we need to keep track of
   const [article1, setArticle1] = useState({});
   const [article2, setArticle2] = useState({});
+  const [loadArticles, setLoadArticles] = useState(true);
   const [oneIsLoading, setOneIsLoading] = useState(false);
   const [twoIsLoading, setTwoIsLoading] = useState(false);
   const [gameInProgress, setGameInProgress] = useState(false);
@@ -32,16 +30,7 @@ const App = () => {
     }
     setCorrectAnswer(false);
     setGameOver(false)
-    setOneIsLoading(true);
-    setTwoIsLoading(true);
     setGameInProgress(true);
-    [article1Date, article2Date] = generateArticles();
-    if (article1Date < article2Date){
-        setNewerArticle(2)
-    }
-    else {
-        setNewerArticle(1)
-    }
   }
 
   const article1Click = () => {
@@ -50,6 +39,9 @@ const App = () => {
       setCorrectAnswer(true);
       // console.log('You won! score: ', currScore + 1)
       // beginGame()
+      setLoadArticles(true);
+      setOneIsLoading(true);
+      setTwoIsLoading(true);
     }
     else {
       // console.log('You lost')
@@ -63,6 +55,9 @@ const App = () => {
       setCorrectAnswer(true);
       // console.log('You won! score: ', currScore + 1)
       // beginGame()
+      setLoadArticles(true);
+      setOneIsLoading(true);
+      setTwoIsLoading(true);
     }
     else {
       // console.log('You lost')
@@ -78,11 +73,18 @@ const App = () => {
           console.log(result);
           setArticle1(result[0]);
           setArticle2(result[1]);
+          const date1 = new Date(result[0].published);
+          const date2 = new Date(result[1].published);
+          if (date1 < date2){
+              setNewerArticle(2)
+          }
+          else {
+              setNewerArticle(1)
+          }
           setOneIsLoading(false);
           setTwoIsLoading(false);
       })
       .catch(error => console.log(error))
-    return [0, 1]
   }
 
   const openArticle = url => {
@@ -120,6 +122,11 @@ const App = () => {
       </div>
     )
   } else {
+    if (loadArticles) {
+      console.log('loading articles')
+      generateArticles()
+      setLoadArticles(false)
+    }
     return (
       <div className="App">
         <Display
