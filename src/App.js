@@ -3,30 +3,12 @@ import { useState } from 'react';
 import Display from "./components/Display";
 import GameOver from "./components/GameOver";
 import Transition from "./components/Transition";
-import getArticle from './services/arxiv';
+import getArticles from './services/arxiv';
 
 let article1Date = 0
 let article2Date = 0
 
 const App = () => {
-  // helper function to generate a random ID
-  // based on arXiv ID format
-  const generateRandomArxivId = () => {
-    const today = new Date();
-    const year = (today.getFullYear() % 2000);
-    const randomMonth = Math.floor(Math.random() * (12 + 1 - 1) + 1)
-      .toString()
-      .padStart(2, '0');
-    const randomYear = Math.floor(Math.random() * (year - 8) + 8)
-      .toString()
-      .padStart(2, '0');
-
-    const randomID = Math.floor(Math.random() * (2000 - 1) + 1)
-      .toString()
-      .padStart(5, '0');
-
-    return `${randomYear}${randomMonth}.${randomID}`;
-  };
 
   // state of variables we need to keep track of
   const [article1, setArticle1] = useState({});
@@ -53,8 +35,7 @@ const App = () => {
     setOneIsLoading(true);
     setTwoIsLoading(true);
     setGameInProgress(true);
-    article1Date = generateArticle1();
-    article2Date = generateArticle2();
+    [article1Date, article2Date] = generateArticles();
     if (article1Date < article2Date){
         setNewerArticle(2)
     }
@@ -90,35 +71,18 @@ const App = () => {
   }
 
   // generate first article
-  const generateArticle1 = () => {
-    const articleId = generateRandomArxivId();
-    getArticle(articleId)
+  const generateArticles = () => {
+    getArticles()
       .then(result => {
-          let convert = require('xml-js');
-          let resultJson = convert.xml2js(result, {compact: true, spaces: 4}).feed.entry;
-          console.log('ID that gave article below: ', articleId);
-          console.log(resultJson);
-          setArticle1(resultJson);
+          console.log('articles returned:');
+          console.log(result);
+          setArticle1(result[0]);
+          setArticle2(result[1]);
           setOneIsLoading(false);
-      })
-      .catch(error => console.log(error))
-    return articleId
-  }
-
-  // generate second article
-  const generateArticle2 = () => {
-    const articleId = generateRandomArxivId();
-    getArticle(articleId)
-      .then(result => {
-          let convert = require('xml-js');
-          let resultJson = convert.xml2js(result, {compact: true, spaces: 4}).feed.entry;
-          console.log('ID that gave article below: ', articleId);
-          console.log(resultJson);
-          setArticle2(resultJson);
           setTwoIsLoading(false);
       })
       .catch(error => console.log(error))
-    return articleId
+    return [0, 1]
   }
 
   const openArticle = url => {

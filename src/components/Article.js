@@ -2,15 +2,15 @@ const Latex = require('react-latex')
 
 const Article = (props) => {
   const entry = props.value;
-  const title = entry.title["_text"];
-  const abstract = entry.summary["_text"];
+  const title = entry.title;
+  const abstract = entry.summary;
   let authors = [];
 
   for (let i = 0; i < entry.author.length; i++) {
-    authors.push(entry.author[i].name["_text"]);
+    authors.push(entry.author[i].name);
   }
   if (authors.length === 0) {
-    authors = [entry.author.name["_text"]];
+    authors = [entry.author.name];
   }
 
   return (
