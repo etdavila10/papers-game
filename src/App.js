@@ -93,11 +93,11 @@ const App = () => {
   if (correctAnswer) {
     return (
       <div className="App">
-        <Transition 
-          beginGame={beginGame} 
+        <Transition
+          beginGame={beginGame}
           openArticle={openArticle}
-          article1={article1} 
-          article2={article2} 
+          article1={article1}
+          article2={article2}
           currScore={currScore}
           bestScore={bestScore}
           newerArticle={newerArticle}
@@ -110,11 +110,11 @@ const App = () => {
       <div className="App">
         <GameOver
           currScore={currScore}
-          beginGame={beginGame} 
+          beginGame={beginGame}
           openArticle={openArticle}
           bestScore={bestScore}
-          article1={article1} 
-          article2={article2} 
+          article1={article1}
+          article2={article2}
           newerArticle={newerArticle}
         />
       </div>
@@ -122,12 +122,12 @@ const App = () => {
   } else {
     return (
       <div className="App">
-        <Display 
-          beginGame={beginGame} 
-          gameInProgress={gameInProgress} 
-          isLoading={oneIsLoading || twoIsLoading} 
-          article1={article1} 
-          article2={article2} 
+        <Display
+          beginGame={beginGame}
+          gameInProgress={gameInProgress}
+          isLoading={oneIsLoading || twoIsLoading}
+          article1={article1}
+          article2={article2}
           article1Click={article1Click}
           article2Click={article2Click}
           currScore={currScore}
