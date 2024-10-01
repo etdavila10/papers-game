@@ -10,9 +10,7 @@ const App = () => {
   // state of variables we need to keep track of
   const [article1, setArticle1] = useState({});
   const [article2, setArticle2] = useState({});
-  const [loadArticles, setLoadArticles] = useState(true);
-  const [oneIsLoading, setOneIsLoading] = useState(false);
-  const [twoIsLoading, setTwoIsLoading] = useState(false);
+  const [loadingArticles, setLoadingArticles] = useState(false);
   const [gameInProgress, setGameInProgress] = useState(false);
   const [currScore, setCurrScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
@@ -31,6 +29,8 @@ const App = () => {
     setCorrectAnswer(false);
     setGameOver(false)
     setGameInProgress(true);
+    setLoadingArticles(true);
+    generateArticles()
   }
 
   const article1Click = () => {
@@ -39,9 +39,6 @@ const App = () => {
       setCorrectAnswer(true);
       // console.log('You won! score: ', currScore + 1)
       // beginGame()
-      setLoadArticles(true);
-      setOneIsLoading(true);
-      setTwoIsLoading(true);
     }
     else {
       // console.log('You lost')
@@ -55,9 +52,6 @@ const App = () => {
       setCorrectAnswer(true);
       // console.log('You won! score: ', currScore + 1)
       // beginGame()
-      setLoadArticles(true);
-      setOneIsLoading(true);
-      setTwoIsLoading(true);
     }
     else {
       // console.log('You lost')
@@ -81,8 +75,7 @@ const App = () => {
           else {
               setNewerArticle(1)
           }
-          setOneIsLoading(false);
-          setTwoIsLoading(false);
+          setLoadingArticles(false);
       })
       .catch(error => console.log(error))
   }
@@ -122,17 +115,12 @@ const App = () => {
       </div>
     )
   } else {
-    if (loadArticles) {
-      console.log('loading articles')
-      generateArticles()
-      setLoadArticles(false)
-    }
     return (
       <div className="App">
         <Display
           beginGame={beginGame}
           gameInProgress={gameInProgress}
-          isLoading={oneIsLoading || twoIsLoading}
+          isLoading={loadingArticles}
           article1={article1}
           article2={article2}
           article1Click={article1Click}

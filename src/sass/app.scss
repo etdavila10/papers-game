@@ -132,4 +132,10 @@ button:hover {
   .article-entry:hover {
     background-color: $light-grey;
   }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

@@ -15,11 +15,11 @@ const Display = (props) => {
         <button onClick={props.beginGame}>Start a new game?</button>
         <h2>
           By{" "}
-          <a href="https://sites.google.com/umn.edu/aaronli" class="link">
+          <a href="https://sites.google.com/umn.edu/aaronli" className="link">
             Aaron Li
           </a>{" "}
           and{" "}
-          <a href="https://etdavila10.github.io/" class="link">
+          <a href="https://etdavila10.github.io/" className="link">
             Eduardo Torres Dávila
           </a>
         </h2>
@@ -40,6 +40,8 @@ const Display = (props) => {
         </div>
       </>
     );
+  } else {
+    return <h1 className="loading">Loading Articles...</h1>
   }
 };
 
