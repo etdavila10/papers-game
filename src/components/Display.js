@@ -28,17 +28,17 @@ const Display = (props) => {
   }
   if (!props.isLoading) {
     return (
-      <>
-        <h1>Which paper was submitted to the ArXiv more recently?</h1>
-        <div id="scores">
-          <div id="curr-score">Current Score = {props.currScore}</div>
-          <div id="best-score">Best Score = {props.bestScore}</div>
+      <div className="bg-gray-800">
+        <div className="flex flex-col items-center">
+          <h1 className="font-bold text-2xl pt-24 mb-6">Which is the latest paper?</h1>
+          <div className="mb-3 text-xl font-bold">Score: {props.currScore}</div>
+          <div className="flex flex-col">
+            <Article articleNum="1" onClick={props.article1Click} value={props.article1} />
+            <Article articleNum="2" onClick={props.article2Click} value={props.article2} />
+          </div>
         </div>
-        <div className="article-containers">
-          <Article onClick={props.article1Click} value={props.article1} />
-          <Article onClick={props.article2Click} value={props.article2} />
-        </div>
-      </>
+        <div className="ml-3 text-xl font-bold">High Score: {props.bestScore}</div>
+      </div>
     );
   } else {
     return (
