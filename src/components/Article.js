@@ -3,7 +3,7 @@ const Latex = require('react-latex')
 const Article = (props) => {
   const entry = props.value;
   const articleNum= props.articleNum;
-  const cutoff = 400;
+  const cutoff = 40;
   const title = entry.title;
 
   const handleReadMore = () => {
@@ -25,9 +25,17 @@ const Article = (props) => {
   let abstractEnd = null;
   let abstract = null;
 
-  if (entry.summary.length >= cutoff) {
+  if (entry.summary.length > cutoff) {
     abstractBeginning = entry.summary.substring(0, cutoff);
-    abstractEnd = entry.summary.substring(cutoff);
+    let numOfDollars = abstractBeginning.match(/\$/g);
+    // Just in case cutoff split in the middle of math mode
+    if (numOfDollars && numOfDollars.length % 2 !== 0) {
+      let nextDollar = entry.summary.indexOf('$', cutoff);
+      abstractBeginning = entry.summary.substring(0, nextDollar + 1);
+      abstractEnd = entry.summary.substring(nextDollar + 1);
+    } else {
+      abstractEnd = entry.summary.substring(cutoff);
+    }
   } else {
     abstract = entry.summary;
   }
