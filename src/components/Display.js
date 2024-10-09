@@ -10,19 +10,19 @@ import Article from "./Article";
 const Display = (props) => {
   if (!props.gameInProgress) {
     return (
-      <div className="content">
-        <h1>Welcome to the ArXiv Game!</h1>
-        <button onClick={props.beginGame}>Start a new game?</button>
-        <h2>
+      <div className="flex-col flex items-center justify-center pt-24">
+        <h1 className="text-2xl mb-6 font-bold">Welcome to the papers game!</h1>
+        <button className="mb-6 p-3 rounded-xl bg-white text-black hover:underline" onClick={props.beginGame}>Start a game</button>
+        <h3>
           By{" "}
-          <a href="https://sites.google.com/umn.edu/aaronli" className="link">
+          <a href="https://sites.google.com/umn.edu/aaronli" className="underline hover:text-pink-200">
             Aaron Li
           </a>{" "}
           and{" "}
-          <a href="https://etdavila10.github.io/" className="link">
+          <a href="https://etdavila10.github.io/" className="underline hover:text-pink-200">
             Eduardo Torres Dávila
           </a>
-        </h2>
+        </h3>
       </div>
     );
   }
@@ -41,7 +41,12 @@ const Display = (props) => {
       </>
     );
   } else {
-    return <h1 className="loading">Loading Articles...</h1>
+    return (
+      <div className="flex justify-center items-center pt-24 font-bold text-2xl">
+        <div className="w-9 h-9 border-8 rounded-full border-t-blue-300 animate-spin"></div>
+        <h1 className="ml-3">Loading Articles</h1>
+      </div>
+    )
   }
 };
 
