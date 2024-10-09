@@ -10,7 +10,7 @@ import Article from "./Article";
 const Display = (props) => {
   if (!props.gameInProgress) {
     return (
-      <div className="flex-col flex items-center justify-center pt-24">
+      <div className="flex-col flex items-center justify-center pt-12">
         <h1 className="text-2xl mb-6 font-bold">Welcome to the papers game!</h1>
         <button className="mb-6 p-3 rounded-xl bg-white text-black hover:underline" onClick={props.beginGame}>Start a game</button>
         <h3>
@@ -30,14 +30,14 @@ const Display = (props) => {
     return (
       <div className="bg-gray-800">
         <div className="flex flex-col items-center">
-          <h1 className="font-bold text-2xl pt-24 mb-6">Which is the latest paper?</h1>
+          <h1 className="font-bold text-2xl pt-12 mb-6">Which is the latest paper?</h1>
           <div className="mb-3 text-xl font-bold">Score: {props.currScore}</div>
           <div className="flex flex-col">
             <Article articleNum="1" onClick={props.article1Click} value={props.article1} />
             <Article articleNum="2" onClick={props.article2Click} value={props.article2} />
           </div>
         </div>
-        <div className="ml-3 text-xl font-bold">High Score: {props.bestScore}</div>
+        <div className="ml-3 mt-3 pb-12 text-xl font-bold">High Score: {props.bestScore}</div>
       </div>
     );
   } else {

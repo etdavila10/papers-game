@@ -3,7 +3,7 @@ const Latex = require('react-latex')
 const Article = (props) => {
   const entry = props.value;
   const articleNum= props.articleNum;
-  const cutoff = 40;
+  const cutoff = 400;
   const title = entry.title;
 
   const handleReadMore = () => {
@@ -24,8 +24,10 @@ const Article = (props) => {
   let abstractBeginning = null;
   let abstractEnd = null;
   let abstract = null;
+  let noBottom = '';
 
   if (entry.summary.length > cutoff) {
+    noBottom = 'rounded-b-none';
     abstractBeginning = entry.summary.substring(0, cutoff);
     let numOfDollars = abstractBeginning.match(/\$/g);
     // Just in case cutoff split in the middle of math mode
@@ -49,28 +51,36 @@ const Article = (props) => {
   }
 
   return (
-    <div className="transition-all duration-500 bg-white text-black rounded-xl p-6 m-3">
-      <h1 className="mb-3"><Latex>{ title }</Latex></h1>
-      <ul className="mb-3">
-        {authors.map((name, index) => {
-          if (index === 0) {
-            return <li className="inline" key={index}>{ name }</li>;
-          } else {
-            return <li className="inline" key={index}> / { name }</li>;
-          }
-        })}
-      </ul>
+    <div className="m-3">
+      <div onClick={props.onClick} className={`bg-white text-black rounded-xl p-6 pb-3 mb-0 hover:bg-green-50 hover:cursor-pointer ${noBottom}`}>
+        <h1 className="text-xl"><Latex>{ title }</Latex></h1>
+        <hr className="mt-3 border-t-2"></hr>
+        <ul className="">
+          {authors.map((name, index) => {
+            if (index === 0) {
+              return <li className="inline text-gray-500" key={index}>{ name }</li>;
+            } else {
+              return <li className="inline text-gray-500" key={index}>, { name }</li>;
+            }
+          })}
+        </ul>
+        <hr className="mb-3 border-t-2"></hr>
+        {abstractBeginning && (
+          <div>
+            <p className="text-md"><Latex>{ abstractBeginning }</Latex>
+              <span id={`dots-${articleNum}`}>...</span>
+              <span className="hidden" id={`more-${articleNum}`}><Latex>{ abstractEnd }</Latex></span>
+            </p>
+          </div>
+        )}
+        {abstract && (
+          <p className="text-lg pb-3"><Latex>{ abstract }</Latex></p>
+        )}
+      </div>
       {abstractBeginning && (
-        <div >
-          <p className="text-md"><Latex>{ abstractBeginning }</Latex>
-            <span id={`dots-${articleNum}`}>...</span>
-            <span className="hidden" id={`more-${articleNum}`}><Latex>{ abstractEnd }</Latex></span>
-          </p>
-          <button id={`expandBtn-${articleNum}`} onClick={handleReadMore} className="bg-gray-600 text-white py-1 px-2 mt-2 rounded-lg">Read more</button>
+        <div className="w-full">
+          <button id={`expandBtn-${articleNum}`} onClick={handleReadMore} className="bg-gray-600 text-white py-3 px-3 rounded-xl hover:bg-gray-500 rounded-t-none w-full">Read more</button>
         </div>
-      )}
-      {abstract && (
-        <p className="text-lg"><Latex>{ abstract }</Latex></p>
       )}
     </div>
   );
