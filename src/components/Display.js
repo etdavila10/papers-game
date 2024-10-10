@@ -12,7 +12,7 @@ const Display = (props) => {
     return (
       <div className="flex-col flex items-center justify-center pt-12">
         <h1 className="text-2xl mb-6 font-bold">Welcome to the papers game!</h1>
-        <button className="mb-6 p-3 rounded-xl bg-white text-black hover:underline" onClick={props.beginGame}>Start a game</button>
+        <button className="mb-6 p-3 rounded-xl bg-white text-black hover:underline" onClick={props.beginGame}>Start game</button>
         <h3>
           By{" "}
           <a href="https://sites.google.com/umn.edu/aaronli" className="underline hover:text-pink-200">
