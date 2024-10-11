@@ -19,7 +19,7 @@ const Transition = (props) => {
             <h2>{article1Date.toLocaleDateString('en-US', options)}</h2>
           </div>
           <div className="w-full">
-            <a href={props.article1.id} target="_blank" className="bg-gray-600 text-white py-3 px-6 rounded-xl hover:bg-gray-500 rounded-t-none w-full block text-center">arXiv page</a>
+            <a href={props.article1.id} target="_blank" rel="noreferrer" className="bg-gray-600 text-white py-3 px-6 rounded-xl hover:bg-gray-500 rounded-t-none w-full block text-center">arXiv page</a>
           </div>
         </div>
         <div className="m-3">
@@ -29,7 +29,7 @@ const Transition = (props) => {
             <h2>{article2Date.toLocaleDateString('en-US', options)}</h2>
           </div>
           <div className="w-full">
-            <a href={props.article2.id} target="_blank" className="bg-gray-600 text-white py-3 px-6 rounded-xl hover:bg-gray-500 rounded-t-none w-full block text-center">arXiv page</a>
+            <a href={props.article2.id} target="_blank" rel="noreferrer" className="bg-gray-600 text-white py-3 px-6 rounded-xl hover:bg-gray-500 rounded-t-none w-full block text-center">arXiv page</a>
           </div>
         </div>
       </div>
