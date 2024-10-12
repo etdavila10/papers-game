@@ -10,6 +10,7 @@ const Article = (props) => {
     let dots = document.getElementById(`dots-${articleNum}`);
     let moreSpan = document.getElementById(`more-${articleNum}`);
     let btn = document.getElementById(`expandBtn-${articleNum}`);
+
     if (dots.style.display === "none") {
       dots.style.display = "inline";
       btn.innerHTML = "Read more";
@@ -48,14 +49,17 @@ const Article = (props) => {
   }
   if (authors.length === 0) {
     authors = [entry.author.name];
+  } else if (authors.length > 5) {
+    authors = authors.slice(0, 5);
+    authors.push('et al.');
   }
 
   return (
-    <div className="m-3">
-      <div onClick={props.onClick} className={`bg-white text-black rounded-xl p-6 pb-3 mb-0 hover:bg-green-50 hover:cursor-pointer ${noBottom}`}>
-        <h1 className="text-xl sm:text-2xl"><Latex>{ title }</Latex></h1>
+    <div className="m-3 md:w-1/2">
+      <div onClick={props.onClick} className={`bg-white text-black rounded-xl p-6 pb-3 mb-0 hover:bg-green-50 hover:cursor-pointer md:h-full ${noBottom} md:rounded-xl`}>
+        <h1 className={`text-xl sm:text-2xl md:text-xl article-title`}><Latex>{ title }</Latex></h1>
         <hr className="mt-3 border-t-2"></hr>
-        <ul className="sm:text-lg">
+        <ul className="sm:text-lg md:text-base authors mb-3">
           {authors.map((name, index) => {
             if (index === 0) {
               return <li className="inline text-gray-500" key={index}>{ name }</li>;
@@ -63,13 +67,13 @@ const Article = (props) => {
               return <li className="inline text-gray-500" key={index}>, { name }</li>;
             }
           })}
+          <hr className="border-t-2"></hr>
         </ul>
-        <hr className="mb-3 border-t-2"></hr>
         {abstractBeginning && (
           <div>
             <p className=""><Latex>{ abstractBeginning }</Latex>
-              <span id={`dots-${articleNum}`}>...</span>
-              <span className="hidden" id={`more-${articleNum}`}><Latex>{ abstractEnd }</Latex></span>
+              <span className="dots" id={`dots-${articleNum}`}>...</span>
+              <span className="hidden extra" id={`more-${articleNum}`}><Latex>{ abstractEnd }</Latex></span>
             </p>
           </div>
         )}
@@ -78,7 +82,7 @@ const Article = (props) => {
         )}
       </div>
       {abstractBeginning && (
-        <div className="w-full">
+        <div className="w-full md:hidden">
           <button id={`expandBtn-${articleNum}`} onClick={handleReadMore} className="bg-gray-600 text-white py-3 px-3 rounded-xl hover:bg-gray-500 rounded-t-none w-full">Read more</button>
         </div>
       )}

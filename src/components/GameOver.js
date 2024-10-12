@@ -23,10 +23,10 @@ const GameOver = (props) => {
         )
       }
 
-      <div className="flex flex-col sm:m-6 sm:gap-3">
-        <div className="m-3">
+      <div className="flex flex-col sm:m-6 sm:gap-3 md:flex-row w-full p-3">
+        <div className="w-full md:w-1/2">
           <div className={`rounded-t-xl p-6 mb-0 ${props.newerArticle === 2 ? "bg-red-400" : "bg-white text-black"}`}>
-            <h2 className="text-xl sm:text-2xl">{props.article1.title}</h2>
+            <h2 className="text-xl sm:text-2xl md:text-xl article-title">{props.article1.title}</h2>
             <hr className="my-3 border-t-2"></hr>
             <h2 className="sm:text-lg">{article1Date.toLocaleDateString('en-US', options)}</h2>
           </div>
@@ -34,9 +34,9 @@ const GameOver = (props) => {
             <a href={props.article1.id} target="_blank" rel="noopener noreferrer" className="bg-gray-600 text-white py-3 px-6 rounded-xl hover:bg-gray-500 rounded-t-none w-full block text-center">arXiv page</a>
           </div>
         </div>
-        <div className="m-3">
+        <div className="w-full md:w-1/2">
           <div className={`rounded-t-xl p-6 mb-0 ${props.newerArticle === 1 ? "bg-red-400" : "bg-white text-black"}`}>
-            <h2 className="text-xl sm:text-2xl">{props.article2.title}</h2>
+            <h2 className="text-xl sm:text-2xl md:text-xl article-title">{props.article2.title}</h2>
             <hr className="my-3 border-t-2"></hr>
             <h2 className="sm:text-lg">{article2Date.toLocaleDateString('en-US', options)}</h2>
           </div>

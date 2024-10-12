@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Display from "./components/Display";
 import GameOver from "./components/GameOver";
@@ -17,6 +17,29 @@ const App = () => {
   const [gameOver, setGameOver] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState(false);
   const [newerArticle, setNewerArticle] = useState(0);
+
+  // update title height of articles h1 tag
+  // so that they are even
+  useEffect(() => {
+    if (window.innerWidth >= 768) {
+      const titles = document.querySelectorAll('.article-title');
+      const tHeights = Array.from(titles).map(title => title.offsetHeight);
+
+      const authors = document.querySelectorAll('.authors');
+      const aHeights = Array.from(authors).map(author => author.offsetHeight);
+
+      const tMaxHeight = Math.max(...tHeights);
+      const aMaxHeight = Math.max(...aHeights);
+
+      for (let title of titles) {
+        title.style.height = `${tMaxHeight}px`;
+      }
+
+      for (let author of authors) {
+        author.style.height = `${aMaxHeight}px`;
+      }
+    }
+  }, [loadingArticles, gameOver, correctAnswer])
 
   // player has pressed the beginGame button
   const beginGame = () => {
