@@ -10,10 +10,10 @@ import Article from "./Article";
 const Display = (props) => {
   if (!props.gameInProgress) {
     return (
-      <div className="flex-col flex items-center justify-center pt-12">
-        <h1 className="text-2xl mb-6 font-bold">Welcome to the papers game!</h1>
-        <button className="mb-6 p-3 rounded-xl bg-white text-black hover:underline" onClick={props.beginGame}>Start game</button>
-        <h3>
+      <div className="flex-col flex items-center justify-center h-screen">
+        <h1 className="text-2xl mb-12 font-bold sm:text-4xl">Welcome to the papers game!</h1>
+        <button className="mb-12 py-3 px-6 text-xl rounded-full bg-white text-black hover:underline sm:text-2xl" onClick={props.beginGame}>Start game</button>
+        <h3 className="text-lg sm:text-xl">
           By{" "}
           <a href="https://sites.google.com/umn.edu/aaronli" className="underline hover:text-pink-200">
             Aaron Li
@@ -30,14 +30,14 @@ const Display = (props) => {
     return (
       <div className="bg-gray-800">
         <div className="flex flex-col items-center">
-          <h1 className="font-bold text-2xl pt-12 mb-6">Which is the latest paper?</h1>
-          <div className="mb-3 text-xl font-bold">Score: {props.currScore}</div>
-          <div className="flex flex-col">
+          <h1 className="font-bold text-2xl pt-12 mb-6 sm:text-4xl">Which is the latest paper?</h1>
+          <div className="mb-3 text-xl font-bold sm:text-2xl">Score: {props.currScore}</div>
+          <div className="flex flex-col sm:m-6 sm:gap-3">
             <Article articleNum="1" onClick={props.article1Click} value={props.article1} />
             <Article articleNum="2" onClick={props.article2Click} value={props.article2} />
           </div>
         </div>
-        <div className="ml-3 mt-3 pb-12 text-xl font-bold">High Score: {props.bestScore}</div>
+        <div className="ml-3 pb-12 text-xl font-bold sm:text-2xl sm:ml-9">High Score: {props.bestScore}</div>
       </div>
     );
   } else {

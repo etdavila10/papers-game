@@ -53,9 +53,9 @@ const Article = (props) => {
   return (
     <div className="m-3">
       <div onClick={props.onClick} className={`bg-white text-black rounded-xl p-6 pb-3 mb-0 hover:bg-green-50 hover:cursor-pointer ${noBottom}`}>
-        <h1 className="text-xl"><Latex>{ title }</Latex></h1>
+        <h1 className="text-xl sm:text-2xl"><Latex>{ title }</Latex></h1>
         <hr className="mt-3 border-t-2"></hr>
-        <ul className="">
+        <ul className="sm:text-lg">
           {authors.map((name, index) => {
             if (index === 0) {
               return <li className="inline text-gray-500" key={index}>{ name }</li>;
@@ -67,14 +67,14 @@ const Article = (props) => {
         <hr className="mb-3 border-t-2"></hr>
         {abstractBeginning && (
           <div>
-            <p className="text-md"><Latex>{ abstractBeginning }</Latex>
+            <p className=""><Latex>{ abstractBeginning }</Latex>
               <span id={`dots-${articleNum}`}>...</span>
               <span className="hidden" id={`more-${articleNum}`}><Latex>{ abstractEnd }</Latex></span>
             </p>
           </div>
         )}
         {abstract && (
-          <p className="text-lg pb-3"><Latex>{ abstract }</Latex></p>
+          <p className="pb-3"><Latex>{ abstract }</Latex></p>
         )}
       </div>
       {abstractBeginning && (
