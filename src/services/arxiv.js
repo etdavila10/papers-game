@@ -106,7 +106,7 @@ const getArticles = () => (
   axios
     .get(baseUrl)
     .then(response => { return response.data;})
-    //.then(response => { return testResponse;})
+    // .then(response => { return testResponse;})
 );
 
 export default getArticles;

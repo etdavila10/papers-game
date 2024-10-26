@@ -20,6 +20,8 @@ const Display = (props) => {
 
   const handleReadMore = () => {
     let dots = document.querySelectorAll(".dots");
+    console.log(`dots is`);
+    console.log(dots);
     let moreSpan = document.querySelectorAll(".extra");
     let btn = document.getElementById("global-more-btn");
 
@@ -30,7 +32,7 @@ const Display = (props) => {
       moreSpan.forEach((more) => {more.style.display="none";});
       btn.innerHTML = "Read more";
     } else {
-      dots.forEach((dot) => {dot.style.display = "hidden";});
+      dots.forEach((dot) => {dot.style.display = "none";});
       moreSpan.forEach((more) => {more.style.display="inline";});
       btn.innerHTML = "Read less";
     }
