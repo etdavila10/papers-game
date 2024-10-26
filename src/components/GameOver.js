@@ -23,7 +23,7 @@ const GameOver = (props) => {
         )
       }
 
-      <div className="flex flex-col sm:m-6 sm:gap-3 md:flex-row w-full p-3">
+      <div className="flex flex-col gap-6 sm:p-9 sm:gap-6 md:flex-row w-full p-3 md:gap-9">
         <div className="w-full md:w-1/2">
           <div className={`rounded-t-xl p-6 mb-0 ${props.newerArticle === 2 ? "bg-red-400" : "bg-white text-black"}`}>
             <h2 className="text-xl sm:text-2xl md:text-xl article-title">{props.article1.title}</h2>

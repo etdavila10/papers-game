@@ -11,7 +11,7 @@ const Transition = (props) => {
         <div className="text-xl font-bold sm:text-2xl">Score: {props.currScore}</div>
         <div className="mb-3 text-xl font-bold sm:text-2xl">Best Score: {props.bestScore}</div>
       </div>
-      <div className="flex flex-col items-center sm:m-6 sm:gap-3 md:flex-row w-full p-3">
+      <div className="flex flex-col items-center gap-6 sm:p-9 sm:gap-6 md:flex-row w-full p-3 md:gap-9">
         <div className="md:w-1/2 w-full">
           <div className={`rounded-t-xl p-6 mb-0 ${props.newerArticle === 1 ? "bg-green-200 text-black" : "bg-white text-black"}`}>
             <h2 className="text-xl sm:text-2xl md:text-xl article-title">{props.article1.title}</h2>
